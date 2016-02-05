@@ -41,17 +41,38 @@ function letsGetGames(summonerID)
 		async: false,
 		success: function (json)
 		{
-			var gameArray = json.games
+			var games = json.games;
 
 			var len = 10;
 			for(var i=0; i < len; i++)
 			{
-				d_nerf.insertAdjacentHTML( 'beforeend', 'game '+ ("0"+(i+1)).slice(-2) );
-				gameMode = gameArray[i].gameMode;
+				var gamesStats = games[i].stats;
+				var date = new Date(games[i].createDate);
+
+				d_nerf.insertAdjacentHTML( 'beforeend', ' '
+					+ date.getMonth() + '/'
+					+ date.getDate()  + ' '
+					+ date.getHours() + ':'
+					+ date.getMinutes()
+					);
+				gameMode = games[i].gameMode;
 				d_nerf.insertAdjacentHTML( 'beforeend', ' ' + gameMode );
-				championId = gameArray[i].championId
+				championId = games[i].championId
 
 				letsGetChampion( championId );
+				gameMode = games[i].gameMode;
+				if(gamesStats.win == true)
+				{
+					d_nerf.insertAdjacentHTML( 'beforeend', ' Win' );
+				}
+				else
+				{
+					d_nerf.insertAdjacentHTML( 'beforeend', ' Lose' );
+				}
+				d_nerf.insertAdjacentHTML( 'beforeend', ' KDA:' + gamesStats.championsKilled );
+				d_nerf.insertAdjacentHTML( 'beforeend', '/' + gamesStats.numDeaths );
+				d_nerf.insertAdjacentHTML( 'beforeend', '/' + gamesStats.assists );
+				d_nerf.insertAdjacentHTML( 'beforeend', '<br>' );
 			}
 		},
 		error: function (XMLHttpRequest, textStatus, errorThrown)
@@ -66,7 +87,10 @@ function letsGetChampion(championId)
 	var d_nerf = document.getElementById( 'nerf' );
 
 	$.ajax({
+		//NA
 		url: 'https://global.api.pvp.net/api/lol/static-data/na/v1.2/champion/'+championId+'?locale=en_US&champData=all&api_key=' + API_KEY,
+		//JP
+		//url: 'https://global.api.pvp.net/api/lol/static-data/na/v1.2/champion/'+championId+'?locale=ja_JP&champData=all&api_key=' + API_KEY,
 		type: 'GET',
 		dataType: 'json',
 		data: { },
@@ -77,7 +101,7 @@ function letsGetChampion(championId)
 			var championImage =json.image
 			championName = json.name;
 			letsSetChampionImageSquare( championImage.full );
-			d_nerf.insertAdjacentHTML( 'beforeend', ' ' + championName + '<br>' );
+			d_nerf.insertAdjacentHTML( 'beforeend', ' ' + championName );
 		},
 		error: function (XMLHttpRequest, textStatus, errorThrown)
 		{
