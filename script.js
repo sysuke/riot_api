@@ -10,6 +10,7 @@ function letGetSummoner()
 		type: 'GET',
 		dataType: 'json',
 		data: {	},
+		async: false,
 		success: function (json)
 		{
 			var SUMMONER_NAME_NOSPACES = name.replace(" ", "");
@@ -18,7 +19,6 @@ function letGetSummoner()
 
 			summonerID = json[SUMMONER_NAME_NOSPACES].id;
 
-			d_nerf.insertAdjacentHTML( 'beforeend', 'Summoner ID:' + summonerID + '<br>' );
 			letsGetGames( summonerID );
 
 		},
@@ -38,6 +38,7 @@ function letsGetGames(summonerID)
 		type: 'GET',
 		dataType: 'json',
 		data: { },
+		async: false,
 		success: function (json)
 		{
 			var gameArray = json.games
@@ -45,13 +46,12 @@ function letsGetGames(summonerID)
 			var len = 10;
 			for(var i=0; i < len; i++)
 			{
-				d_nerf.insertAdjacentHTML( 'beforeend', 'game '+ (i+1) );
+				d_nerf.insertAdjacentHTML( 'beforeend', 'game '+ ("0"+(i+1)).slice(-2) );
 				gameMode = gameArray[i].gameMode;
-				d_nerf.insertAdjacentHTML( 'beforeend', ' game mode:' + gameMode );
+				d_nerf.insertAdjacentHTML( 'beforeend', ' ' + gameMode );
 				championId = gameArray[i].championId
-				d_nerf.insertAdjacentHTML( 'beforeend', ' championId:' + championId + '<br>');
 
-				letsGetChampion( championId ,i);
+				letsGetChampion( championId );
 			}
 		},
 		error: function (XMLHttpRequest, textStatus, errorThrown)
@@ -61,7 +61,7 @@ function letsGetGames(summonerID)
 	});
 }
 
-function letsGetChampion(championId, i)
+function letsGetChampion(championId)
 {
 	var d_nerf = document.getElementById( 'nerf' );
 
@@ -70,16 +70,14 @@ function letsGetChampion(championId, i)
 		type: 'GET',
 		dataType: 'json',
 		data: { },
+		async: false,
 		success: function (json)
 		{
 
 			var championImage =json.image
 			championName = json.name;
-			d_nerf.insertAdjacentHTML( 'beforeend', 'game '+ (i+1) );
-
-			d_nerf.insertAdjacentHTML( 'beforeend', ' championId:' + championId  );
 			letsSetChampionImageSquare( championImage.full );
-			d_nerf.insertAdjacentHTML( 'beforeend', ' championName:' + championName + '<br>' );
+			d_nerf.insertAdjacentHTML( 'beforeend', ' ' + championName + '<br>' );
 		},
 		error: function (XMLHttpRequest, textStatus, errorThrown)
 		{
@@ -91,12 +89,15 @@ function letsGetChampion(championId, i)
 function letsSetChampionImageSquare( championImageSquare )
 {
 	var d_nerf = document.getElementById( 'nerf' );
+	var icon_size = 25;
 
 	d_nerf.insertAdjacentHTML(
 			'beforeend',
 			'<img src="'
 			+ 'http://ddragon.leagueoflegends.com/cdn/6.2.1/img/champion/'
 			+ championImageSquare
-			+ '">' );
+			+ '"'
+			+ 'width='+ icon_size + 'height='+ icon_size
+			+'>' );
 }
 
