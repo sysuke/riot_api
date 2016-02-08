@@ -42,6 +42,7 @@ function letGetChampionData()
 {
 	var d_chdata = document.getElementById( 'right_frame' );
 	var championId = document.form1.championsel.options[document.form1.championsel.selectedIndex].value;
+	var mobafirach = document.form1.mobafire.checked;
 	var d_old = document.getElementById('data');
 	if(d_old != null){
 		d_old.parentNode.removeChild(d_old);
@@ -82,13 +83,17 @@ function letGetChampionData()
 				+ '<br>'
 				+ 'R: ' + spells[3].name + '<br>'
 				+ ' ' + spells[3].description + '<br>'
-				+ '<br>'
-				+ '<iframe src="'
-				+ 'http://www.mobafire.com/league-of-legends/'+ key +'-guide"'
-				+ 'width="1000" height="500" name="modifire">'
-				+ 'modifire'
-				+ '</a>'
-				+ '</div>' );
+				+ '<br>');
+			if(mobafirach)
+			{
+				d_chdata.insertAdjacentHTML( 'beforeend',
+					  '<iframe src="'
+					+ 'http://www.mobafire.com/league-of-legends/'+ key +'-guide"'
+					+ 'width="1000" height="500" name="modifire">'
+					+ 'modifire'
+					+ '</iframe>');
+			}
+			d_chdata.insertAdjacentHTML( 'beforeend', '</div>' );
 			letsSetChampionImageSquare( championImage.full );
 		},
 		error: function (XMLHttpRequest, textStatus, errorThrown)
