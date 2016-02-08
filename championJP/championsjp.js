@@ -63,6 +63,7 @@ function letGetChampionData()
 			championName = json.name;
 			spells = json.spells;
 			passive = json.passive;
+			key = json.key;
 			d_chdata.insertAdjacentHTML( 'beforeend',
 				  '<div id="data">'+ '<br>'
 				+ championName + '<br>'
@@ -81,6 +82,12 @@ function letGetChampionData()
 				+ '<br>'
 				+ 'R: ' + spells[3].name + '<br>'
 				+ ' ' + spells[3].description + '<br>'
+				+ '<br>'
+				+ '<iframe src="'
+				+ 'http://www.mobafire.com/league-of-legends/'+ key +'-guide"'
+				+ 'width="1000" height="500" name="modifire">'
+				+ 'modifire'
+				+ '</a>'
 				+ '</div>' );
 			letsSetChampionImageSquare( championImage.full );
 		},
