@@ -63,14 +63,15 @@ function letGetChampionData()
 			championName = json.name;
 			spells = json.spells;
 			//letsSetChampionImageSquare( championImage.full );
-			d_chdata.insertAdjacentHTML( 'beforeend', '<div id="data">');
-			d_chdata.insertAdjacentHTML( 'beforeend', championName + '<br>' );
-			d_chdata.insertAdjacentHTML( 'beforeend', '<br>' );
-			d_chdata.insertAdjacentHTML( 'beforeend', 'Q: ' + spells[0].name + '<br>' );
-			d_chdata.insertAdjacentHTML( 'beforeend', 'W: ' + spells[1].name + '<br>' );
-			d_chdata.insertAdjacentHTML( 'beforeend', 'E: ' + spells[2].name + '<br>' );
-			d_chdata.insertAdjacentHTML( 'beforeend', 'R: ' + spells[3].name + '<br>' );
-			d_chdata.insertAdjacentHTML( 'beforeend', '</div>' );
+			d_chdata.insertAdjacentHTML( 'beforeend',
+				  '<div id="data">'+ '<br>'
+				+ championName + '<br>'
+				+ '<br>'
+				+ 'Q: ' + spells[0].name + '<br>'
+				+ 'W: ' + spells[1].name + '<br>'
+				+ 'E: ' + spells[2].name + '<br>'
+				+ 'R: ' + spells[3].name + '<br>'
+				+ '</div>' );
 		},
 		error: function (XMLHttpRequest, textStatus, errorThrown)
 		{
