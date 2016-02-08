@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Champion</title>
+	<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+
+	<script type="text/javascript" src="../api_key.js"></script>
+	<script type="text/javascript" src="championsjp.js"></script>
+</head>
+<style>
+#left_frame {
+	background-color: #ccc;
+	height:100%;
+	left:0;
+	margin:0;
+	padding:0;
+	position:fixed;
+	_position:absolute;
+	top:0;
+	width:160px;
+}
+
+#right_frame {
+	height:100%;
+	margin:0 0 0 170px;
+	_overflow:auto;
+	padding:0;
+}
+</style>
+
+<body>
+<div id="left_frame">
+Champion List <br>
+	<form name="form1">
+		<select size="50" id="championsel" onChange="letGetChampionData()">
+		</select>
+	</form>
+</div>
+<div id="right_frame">
+champion data
+</div>
+<script type="text/javascript">
+	letGetChamipons();
+</script>
+</body>
+</html>
