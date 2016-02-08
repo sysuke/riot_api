@@ -43,7 +43,7 @@ function letsGetGames(summonerID)
 		{
 			var games = json.games;
 
-			var len = 10;
+			var len = games.length;
 			for(var i=0; i < len; i++)
 			{
 				var gamesStats = games[i].stats;

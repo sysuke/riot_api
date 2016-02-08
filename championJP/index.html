@@ -9,7 +9,6 @@
 </head>
 <style>
 #left_frame {
-	background-color: #ccc;
 	height:100%;
 	left:0;
 	margin:0;
@@ -29,7 +28,7 @@
 </style>
 
 <body>
-<div id="left_frame">
+<div id="left_frame" align="center">
 Champion List <br>
 	<form name="form1">
 		<select size="50" id="championsel" onChange="letGetChampionData()">
@@ -37,7 +36,10 @@ Champion List <br>
 	</form>
 </div>
 <div id="right_frame">
-champion data
+	Champion Data
+	<div id="data">
+		<br>
+	</div>
 </div>
 <script type="text/javascript">
 	letGetChamipons();

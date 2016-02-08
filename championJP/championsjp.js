@@ -62,16 +62,27 @@ function letGetChampionData()
 			var championImage =json.image
 			championName = json.name;
 			spells = json.spells;
-			//letsSetChampionImageSquare( championImage.full );
+			passive = json.passive;
 			d_chdata.insertAdjacentHTML( 'beforeend',
 				  '<div id="data">'+ '<br>'
 				+ championName + '<br>'
 				+ '<br>'
+				+ 'passive: ' + passive.name + '<br>'
+				+ ' ' + passive.description + '<br>'
+				+ '<br>'
 				+ 'Q: ' + spells[0].name + '<br>'
+				+ ' ' + spells[0].description + '<br>'
+				+ '<br>'
 				+ 'W: ' + spells[1].name + '<br>'
+				+ ' ' + spells[1].description + '<br>'
+				+ '<br>'
 				+ 'E: ' + spells[2].name + '<br>'
+				+ ' ' + spells[2].description + '<br>'
+				+ '<br>'
 				+ 'R: ' + spells[3].name + '<br>'
+				+ ' ' + spells[3].description + '<br>'
 				+ '</div>' );
+			letsSetChampionImageSquare( championImage.full );
 		},
 		error: function (XMLHttpRequest, textStatus, errorThrown)
 		{
@@ -80,6 +91,20 @@ function letGetChampionData()
 	});
 }
 
+function letsSetChampionImageSquare( championImageSquare )
+{
+	var d_data = document.getElementById( 'data' );
+	var icon_size = 40;
+
+	d_data.insertAdjacentHTML(
+			'afterbegin',
+			'<img src="'
+			+ 'http://ddragon.leagueoflegends.com/cdn/6.2.1/img/champion/'
+			+ championImageSquare
+			+ '"'
+			+ 'width='+ icon_size + 'height='+ icon_size
+			+'>' );
+}
 function chara(name, id)
 {
 	this.name=name;
