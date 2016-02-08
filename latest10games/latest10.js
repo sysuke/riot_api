@@ -69,9 +69,26 @@ function letsGetGames(summonerID)
 				{
 					d_nerf.insertAdjacentHTML( 'beforeend', ' Lose' );
 				}
-				d_nerf.insertAdjacentHTML( 'beforeend', ' KDA:' + gamesStats.championsKilled );
-				d_nerf.insertAdjacentHTML( 'beforeend', '/' + gamesStats.numDeaths );
-				d_nerf.insertAdjacentHTML( 'beforeend', '/' + gamesStats.assists );
+
+				kills = gamesStats.championsKilled;
+				if(!isFinite(kills))
+				{
+					deaths = 0;
+				}
+				deaths = gamesStats.numDeaths;
+				if(!isFinite(deaths))
+				{
+					deaths = 0;
+				}
+				assists =  gamesStats.assists;
+				if(!isFinite(assists))
+				{
+					deaths = 0;
+				}
+
+				d_nerf.insertAdjacentHTML( 'beforeend', ' KDA:' + kills );
+				d_nerf.insertAdjacentHTML( 'beforeend', '/' + deaths );
+				d_nerf.insertAdjacentHTML( 'beforeend', '/' + assists );
 				d_nerf.insertAdjacentHTML( 'beforeend', '<br>' );
 			}
 		},
