@@ -49,7 +49,7 @@ function letGetChampionData()
 		d_old.parentNode.removeChild(d_old);
 	}
 	var api_name = "static-data";
-	var locale = LOCAL_JP;
+	var locale = LOCALE_JP;
 
 	$.ajax({
 		url: HOST_GLOBAL+api_name+'/'+REGION+'/'+VERSION(api_name)+'/champion/'+championId+'?locale='+locale+'&champData=all&api_key='+API_KEY,

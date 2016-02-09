@@ -105,7 +105,7 @@ function letsGetChampion(championId)
 {
 	var d_nerf = document.getElementById( 'nerf' );
 	var api_name = "static-data";
-	var locale = LOCAL_US;
+	var locale = LOCALE_US;
 
 	$.ajax({
 		url: HOST_GLOBAL+api_name+'/'+REGION+'/'+VERSION(api_name)+'/champion/'+championId+'?locale='+locale+'&champData=all&api_key='+API_KEY,
