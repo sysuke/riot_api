@@ -3,9 +3,10 @@ function letGetChamipons()
 {
 	//	document.write();
 	var d_chsel = document.getElementById( 'championsel' );
+	var api_name = "static-data";
 
 	$.ajax({
-		url: 'https://global.api.pvp.net/api/lol/static-data/na/v1.2/champion?dataById=true&api_key=' + API_KEY,
+		url: HOST_GLOBAL+api_name+'/'+REGION+'/'+VERSION(api_name)+'/champion?dataById=true&api_key='+API_KEY,
 		type: 'GET',
 		dataType: 'json',
 		data: {	},
@@ -47,13 +48,11 @@ function letGetChampionData()
 	if(d_old != null){
 		d_old.parentNode.removeChild(d_old);
 	}
-
+	var api_name = "static-data";
+	var locale = LOCAL_JP;
 
 	$.ajax({
-		//NA
-		//url: 'https://global.api.pvp.net/api/lol/static-data/na/v1.2/champion/'+championId+'?locale=en_US&champData=all&api_key=' + API_KEY,
-		//JP
-		url: 'https://global.api.pvp.net/api/lol/static-data/na/v1.2/champion/'+championId+'?locale=ja_JP&champData=all&api_key=' + API_KEY,
+		url: HOST_GLOBAL+api_name+'/'+REGION+'/'+VERSION(api_name)+'/champion/'+championId+'?locale='+locale+'&champData=all&api_key='+API_KEY,
 		type: 'GET',
 		dataType: 'json',
 		data: { },

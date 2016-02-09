@@ -4,9 +4,10 @@ function letGetSummoner()
 	//	document.write();
 	var d_nerf = document.getElementById( 'nerf' );
 	var name =document.form1.field1.value ;
+	var api_name = "summoner";
 
 	$.ajax({
-		url: 'https://na.api.pvp.net/api/lol/na/v1.4/summoner/by-name/' + name+ '?api_key=' + API_KEY,
+		url: HOST_NA+REGION+'/'+VERSION(api_name)+'/'+api_name+'/by-name/'+name+'?api_key='+API_KEY,
 		type: 'GET',
 		dataType: 'json',
 		data: {	},
@@ -32,9 +33,10 @@ function letGetSummoner()
 function letsGetGames(summonerID)
 {
 	var d_nerf = document.getElementById( 'nerf' );
+	var api_name = "game";
 
 	$.ajax({
-		url: 'https://na.api.pvp.net/api/lol/na/v1.3/game/by-summoner/'+summonerID+'/recent?api_key=' + API_KEY,
+		url: HOST_NA+REGION+'/'+VERSION(api_name)+'/'+api_name+'/by-summoner/'+summonerID+'/recent?api_key=' + API_KEY,
 		type: 'GET',
 		dataType: 'json',
 		data: { },
@@ -102,12 +104,11 @@ function letsGetGames(summonerID)
 function letsGetChampion(championId)
 {
 	var d_nerf = document.getElementById( 'nerf' );
+	var api_name = "static-data";
+	var locale = LOCAL_US;
 
 	$.ajax({
-		//NA
-		url: 'https://global.api.pvp.net/api/lol/static-data/na/v1.2/champion/'+championId+'?locale=en_US&champData=all&api_key=' + API_KEY,
-		//JP
-		//url: 'https://global.api.pvp.net/api/lol/static-data/na/v1.2/champion/'+championId+'?locale=ja_JP&champData=all&api_key=' + API_KEY,
+		url: HOST_GLOBAL+api_name+'/'+REGION+'/'+VERSION(api_name)+'/champion/'+championId+'?locale='+locale+'&champData=all&api_key='+API_KEY,
 		type: 'GET',
 		dataType: 'json',
 		data: { },
@@ -135,7 +136,9 @@ function letsSetChampionImageSquare( championImageSquare )
 	d_nerf.insertAdjacentHTML(
 			'beforeend',
 			'<img src="'
-			+ 'http://ddragon.leagueoflegends.com/cdn/6.2.1/img/champion/'
+			+ 'http://ddragon.leagueoflegends.com/cdn/'
+			+ VERSION("ddragon")
+			+'/img/champion/'
 			+ championImageSquare
 			+ '"'
 			+ 'width='+ icon_size + 'height='+ icon_size
